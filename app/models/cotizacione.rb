@@ -1,0 +1,2 @@
+class Cotizacione < ApplicationRecord
+end

@@ -1,0 +1,52 @@
+<p id="notice"><%= notice %></p>
+
+<h2>Cotizaciones</h2>
+
+<style >
+.paquete{
+  background-color: red;
+}
+</style>
+
+<div class="table-responsive">
+<table class="table table-striped">
+   <thead>
+    <tr>
+      <th scope="col"> <div class="center-block">
+    Paqueteria</div></th>
+      <th scope="col">Producto</th>
+      <th scope="col">Precio</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cotizaciones.each do |cotizacione| %>
+      <tr>
+       
+        <td>
+          <% if cotizacione.paqueteria == "DHL" %>            
+            <!--<img class="img-responsive" src="logo_dhl" alt="DHL">-->
+            <%= image_tag("logo_dhl", :size=>"200x100", :responsive=>true)%>
+
+          <% elsif  cotizacione.paqueteria=="Estafeta"%>
+            <%= image_tag("logo_estafeta", :size=>"200x100", class:"img-responsive")%>
+            
+          <%elsif cotizacione.paqueteria=="Fedex"%>  
+            <%= image_tag("logo_fedex", :size=>"200x100", class:"img-responsive")%>
+            <%else %>
+             <%= cotizacione.paqueteria %>
+          <% end %>            
+        </td>
+        <td><%= cotizacione.producto %></td>
+        <td><%= cotizacione.precio %></td>
+        <td><%= link_to 'Elegir', cotizacione %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+<br>
+
+<%= link_to 'New Cotizacione', new_cotizacione_path %>

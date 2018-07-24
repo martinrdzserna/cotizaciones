@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Token:</strong>
+  <%= @cotizacione.token %>
+</p>
+
+<p>
+  <strong>Paqueteria:</strong>
+  <%= @cotizacione.paqueteria %>
+</p>
+
+<p>
+  <strong>Producto:</strong>
+  <%= @cotizacione.producto %>
+</p>
+
+<p>
+  <strong>Precio:</strong>
+  <%= @cotizacione.precio %>
+</p>
+
+<%= link_to 'Edit', edit_cotizacione_path(@cotizacione) %> |
+<%= link_to 'Back', cotizaciones_path %>

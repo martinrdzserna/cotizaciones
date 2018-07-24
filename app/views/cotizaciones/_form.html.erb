@@ -1,0 +1,37 @@
+<%= form_with(model: cotizacione, local: true) do |form| %>
+  <% if cotizacione.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(cotizacione.errors.count, "error") %> prohibited this cotizacione from being saved:</h2>
+
+      <ul>
+      <% cotizacione.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :token %>
+    <%= form.text_field :token, id: :cotizacione_token %>
+  </div>
+
+  <div class="field">
+    <%= form.label :paqueteria %>
+    <%= form.text_field :paqueteria, id: :cotizacione_paqueteria %>
+  </div>
+
+  <div class="field">
+    <%= form.label :producto %>
+    <%= form.text_field :producto, id: :cotizacione_producto %>
+  </div>
+
+  <div class="field">
+    <%= form.label :precio %>
+    <%= form.text_field :precio, id: :cotizacione_precio %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
