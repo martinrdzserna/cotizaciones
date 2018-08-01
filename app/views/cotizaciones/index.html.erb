@@ -1,22 +1,153 @@
-<p id="notice"><%= notice %></p>
-
-<h2>Cotizaciones</h2>
-
 <style >
-.paquete{
-  background-color: red;
+a{
+  color: white;
 }
+
+
+
+tr{
+width: 100%;
+}
+th{
+  text-align: center; 
+  vertical-align: middle;
+}
+.flex{
+  display: flex;
+  flex-wrap: wrap;
+}
+.container{
+  margin: 0 auto;
+  width: 90%;
+
+}
+@media (max-width: 1070px){
+  .container{
+    margin: 0 auto;
+    width: 80%;
+
+  }
+  
+}
+
+.precio{
+    font-size: 30px;
+    color:#5B2C6F;
+    vertical-align: middle;
+  }
+a:link 
+{ 
+text-decoration:none; 
+} 
+
+  @media only screen 
+    and (max-width: 760px), (min-device-width: 768px) 
+    and (max-device-width: 1024px)  {
+
+  .precio{
+    font-size: 20px;
+    color:#5B2C6F;
+
+  }
+  h5{
+    font-size: 20pX;
+  }
+  
+  table, thead, tbody, th, td, tr {
+      display: block;
+    }
+  table{
+    width: 100%;    
+  }
+  thead {
+    display: none;
+  }
+   tr:nth-of-type(2n) {
+           background-color: inherit;
+       }
+  tr td:first-child {
+           background: #ffffff;
+           font-weight:bold;
+           font-size:1.3em;
+       }
+       tbody td {
+           display: block;
+           text-align:center;
+       }
+       tbody td:before {
+           content: attr(data-th);
+           display: block;
+           text-align:center;
+       }
+
+       td {
+      /* Behave  like a "row" */
+      /*border: none;*/
+      border-bottom: 1px solid #eee;
+      position: relative;
+      padding-left: 50%;
+    }    
+
+    td:before {
+      /* Now like a table header */
+      position: absolute;
+      /* Top/left values mimic padding */
+      /*top: 0;*/
+      left: 0px;
+      width: 45%;
+      padding-right: 40px;
+      white-space: nowrap;
+    }    
+    td:nth-of-type(2):before { content: "Producto:"; 
+    font-size: 20px; 
+    text-align: left;        
+    margin-left: 20px;
+    vertical-align: middle;
+  }
+
+    td:nth-of-type(3):before { content: "Precio:"; 
+    font-size: 20px;     
+    text-align: left;
+    margin-left: 20px;
+    vertical-align: middle;
+    }    
+    h2{
+      font-size: 25px;
+    }
+  }
+
+ @media only screen 
+    and (max-width: 460px){
+      td:nth-of-type(3):before { content: "Precio:"; 
+      display: none;
+    }
+     td:nth-of-type(2):before { content: "Producto:"; 
+    display: none;
+  }
+  h2{
+      font-size: 26px;
+    }
+
+    }
+
+
 </style>
 
-<div class="table-responsive">
-<table class="table table-striped">
+<div class="container">
+  
+<p id="notice"><%= notice %></p>
+<center><h2  class="font-montserrat-bold center">¡Cotizaciones disponibles!</h2></center>
+
+<br>
+
+
+<table class="table table-hover">
    <thead>
     <tr>
-      <th scope="col"> <div class="center-block">
-    Paqueteria</div></th>
-      <th scope="col">Producto</th>
-      <th scope="col">Precio</th>
-      <th colspan="3"></th>
+      <th scope="col"><h4>Paquetería</h4></th>
+      <th scope="col"><h4>Producto</h4></th>
+      <th scope="col"><h4>Precio</h4></th>
+      <th colspan="3 "></th>
     </tr>
   </thead>
 
@@ -24,29 +155,31 @@
     <% @cotizaciones.each do |cotizacione| %>
       <tr>
        
-        <td>
+        <td style="text-align: center; vertical-align: middle">
           <% if cotizacione.paqueteria == "DHL" %>            
+
             <!--<img class="img-responsive" src="logo_dhl" alt="DHL">-->
-            <%= image_tag("logo_dhl", :size=>"200x100", :responsive=>true)%>
+            <%= image_tag("logo_dhl", :size=>"200x100", :responsive=>true, class: "img-fluid")%>
 
           <% elsif  cotizacione.paqueteria=="Estafeta"%>
-            <%= image_tag("logo_estafeta", :size=>"200x100", class:"img-responsive")%>
+            <%= image_tag("logo_estafeta", :size=>"200x100", class:"img-fluid")%>
             
           <%elsif cotizacione.paqueteria=="Fedex"%>  
-            <%= image_tag("logo_fedex", :size=>"200x100", class:"img-responsive")%>
+            <%= image_tag("logo_fedex", :size=>"200x100", class:"img-fluid")%>
             <%else %>
              <%= cotizacione.paqueteria %>
           <% end %>            
         </td>
-        <td><%= cotizacione.producto %></td>
-        <td><%= cotizacione.precio %></td>
-        <td><%= link_to 'Elegir', cotizacione %></td>
-
+        <td style="text-align: center; vertical-align:middle;"><h5><%=cotizacione.producto %></h5></td>
+        <td style="text-align: center; vertical-align:middle;"><p class="precio">$<%=cotizacione.precio %></p></td>
+        <td style="text-align: center; vertical-align:middle;"><button type="button" class="btn btn-primary" ><%= link_to 'Elegir', cotizacione %></button></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-</div>
 <br>
 
-<%= link_to 'New Cotizacione', new_cotizacione_path %>
+<center><button type="button" class="btn btn-info"><%= link_to 'Nueva cotización', new_cotizacione_path %></button>  </center>
+<br>
+<br>
+</div>
